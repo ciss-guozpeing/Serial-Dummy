@@ -1,0 +1,381 @@
+[{
+		"text": "室内温度曲线",
+		"istitle": true,
+		"subnodes": [{
+				"text": "1_Env Temp 1_环境温度 1",
+				"istitle": true
+			},
+			{
+				"text": "2_Env Temp 2_环境温度 2",
+				"istitle": true
+			},
+			{
+				"text": "3_Avg EnvTemp_平均环境温度",
+				"istitle": true
+			}
+		]
+	},
+	{
+		"text": "热通量曲线",
+		"istitle": true,
+		"subnodes": [{
+				"text": "1_R Up Arm Fr_右上臂前",
+				"istitle": true
+			},
+			{
+				"text": "2_R Up Arm Bk_右上臂后",
+				"istitle": true
+			},
+			{
+				"text": "3_L Up Arm Fr_左上臂前",
+				"istitle": true
+			},
+			{
+				"text": "4_L Up Arm Bk_左上臂后",
+				"istitle": true
+			},
+			{
+				"text": "5_R Forearm Fr_右前臂前",
+				"istitle": true
+			},
+			{
+				"text": "6_R Forearm Bk_右前臂后",
+				"istitle": true
+			},
+			{
+				"text": "7_L Forearm Fr_左前臂前",
+				"istitle": true
+			},
+			{
+				"text": "8_L Forearm Bk_左前臂后",
+				"istitle": true
+			},
+			{
+				"text": "9_Upper Chest_胸上部",
+				"istitle": true
+			},
+			{
+				"text": "10_Shoulders_肩背部",
+				"istitle": true
+			},
+			{
+				"text": "11_Stomach_腹部",
+				"istitle": true
+			},
+			{
+				"text": "12_Mid Back_背中部",
+				"istitle": true
+			},
+			{
+				"text": "13_Waist_腰腹部",
+				"istitle": true
+			},
+			{
+				"text": "14_Lower Back_背下部",
+				"istitle": true
+			},
+			{
+				"text": "15_R Up Thigh Fr_右大腿前",
+				"istitle": true
+			},
+			{
+				"text": "16_R Up Thigh Bk_右大腿后",
+				"istitle": true
+			},
+			{
+				"text": "17_L Up Thigh Fr_左大腿前",
+				"istitle": true
+			},
+			{
+				"text": "18_L Up Thigh Bk_左大腿后",
+				"istitle": true
+			},
+			{
+				"text": "19_R Lwr abdm Fr_右小腹前",
+				"istitle": true
+			},
+			{
+				"text": "20_R Butock_右臀",
+				"istitle": true
+			},
+			{
+				"text": "21_L Lwr abdm Fr_左小腹前",
+				"istitle": true
+			},
+			{
+				"text": "22_L Butock_左臀",
+				"istitle": true
+			},
+			{
+				"text": "23_R Calf Fr_右小腿前",
+				"istitle": true
+			},
+			{
+				"text": "24_R Calf Bk_右小腿后",
+				"istitle": true
+			},
+			{
+				"text": "25_L Calf Fr_左小腿前",
+				"istitle": true
+			},
+			{
+				"text": "26_L Calf Bk_左小腿后",
+				"istitle": true
+			},
+			{
+				"text": "26_L Foot_左脚",
+				"istitle": true
+			},
+			{
+				"text": "28_R Foot_右脚",
+				"istitle": true
+			},
+			{
+				"text": "29_Head_头部",
+				"istitle": true
+			}
+		]
+	},
+	{
+		"text": "体表温度曲线",
+		"istitle": true,
+		"subnodes": [{
+				"text": "1_R Up Arm Fr_右上臂前",
+				"istitle": true
+			},
+			{
+				"text": "2_R Up Arm Bk_右上臂后",
+				"istitle": true
+			},
+			{
+				"text": "3_L Up Arm Fr_左上臂前",
+				"istitle": true
+			},
+			{
+				"text": "4_L Up Arm Bk_左上臂后",
+				"istitle": true
+			},
+			{
+				"text": "5_R Forearm Fr_右前臂前",
+				"istitle": true
+			},
+			{
+				"text": "6_R Forearm Bk_右前臂后",
+				"istitle": true
+			},
+			{
+				"text": "7_L Forearm Fr_左前臂前",
+				"istitle": true
+			},
+			{
+				"text": "8_L Forearm Bk_左前臂后",
+				"istitle": true
+			},
+			{
+				"text": "9_Upper Chest_胸上部",
+				"istitle": true
+			},
+			{
+				"text": "10_Shoulders_肩背部",
+				"istitle": true
+			},
+			{
+				"text": "11_Stomach_腹部",
+				"istitle": true
+			},
+			{
+				"text": "12_Mid Back_背中部",
+				"istitle": true
+			},
+			{
+				"text": "13_Waist_腰腹部",
+				"istitle": true
+			},
+			{
+				"text": "14_Lower Back_背下部",
+				"istitle": true
+			},
+			{
+				"text": "15_R Up Thigh Fr_右大腿前",
+				"istitle": true
+			},
+			{
+				"text": "16_R Up Thigh Bk_右大腿后",
+				"istitle": true
+			},
+			{
+				"text": "17_L Up Thigh Fr_左大腿前",
+				"istitle": true
+			},
+			{
+				"text": "18_L Up Thigh Bk_左大腿后",
+				"istitle": true
+			},
+			{
+				"text": "19_R Lwr abdm Fr_右小腹前",
+				"istitle": true
+			},
+			{
+				"text": "20_R Butock_右臀",
+				"istitle": true
+			},
+			{
+				"text": "21_L Lwr abdm Fr_左小腹前",
+				"istitle": true
+			},
+			{
+				"text": "22_L Butock_左臀",
+				"istitle": true
+			},
+			{
+				"text": "23_R Calf Fr_右小腿前",
+				"istitle": true
+			},
+			{
+				"text": "24_R Calf Bk_右小腿后",
+				"istitle": true
+			},
+			{
+				"text": "25_L Calf Fr_左小腿前",
+				"istitle": true
+			},
+			{
+				"text": "26_L Calf Bk_左小腿后",
+				"istitle": true
+			},
+			{
+				"text": "26_L Foot_左脚",
+				"istitle": true
+			},
+			{
+				"text": "28_R Foot_右脚",
+				"istitle": true
+			},
+			{
+				"text": "29_Head_头部",
+				"istitle": true
+			}
+		]
+	},
+	{
+		"text": "分区热损失曲线",
+		"istitle": true,
+		"subnodes": [{
+				"text": "1_R Up Arm Fr_右上臂前",
+				"istitle": true
+			},
+			{
+				"text": "2_R Up Arm Bk_右上臂后",
+				"istitle": true
+			},
+			{
+				"text": "3_L Up Arm Fr_左上臂前",
+				"istitle": true
+			},
+			{
+				"text": "4_L Up Arm Bk_左上臂后",
+				"istitle": true
+			},
+			{
+				"text": "5_R Forearm Fr_右前臂前",
+				"istitle": true
+			},
+			{
+				"text": "6_R Forearm Bk_右前臂后",
+				"istitle": true
+			},
+			{
+				"text": "7_L Forearm Fr_左前臂前",
+				"istitle": true
+			},
+			{
+				"text": "8_L Forearm Bk_左前臂后",
+				"istitle": true
+			},
+			{
+				"text": "9_Upper Chest_胸上部",
+				"istitle": true
+			},
+			{
+				"text": "10_Shoulders_肩背部",
+				"istitle": true
+			},
+			{
+				"text": "11_Stomach_腹部",
+				"istitle": true
+			},
+			{
+				"text": "12_Mid Back_背中部",
+				"istitle": true
+			},
+			{
+				"text": "13_Waist_腰腹部",
+				"istitle": true
+			},
+			{
+				"text": "14_Lower Back_背下部",
+				"istitle": true
+			},
+			{
+				"text": "15_R Up Thigh Fr_右大腿前",
+				"istitle": true
+			},
+			{
+				"text": "16_R Up Thigh Bk_右大腿后",
+				"istitle": true
+			},
+			{
+				"text": "17_L Up Thigh Fr_左大腿前",
+				"istitle": true
+			},
+			{
+				"text": "18_L Up Thigh Bk_左大腿后",
+				"istitle": true
+			},
+			{
+				"text": "19_R Lwr abdm Fr_右小腹前",
+				"istitle": true
+			},
+			{
+				"text": "20_R Butock_右臀",
+				"istitle": true
+			},
+			{
+				"text": "21_L Lwr abdm Fr_左小腹前",
+				"istitle": true
+			},
+			{
+				"text": "22_L Butock_左臀",
+				"istitle": true
+			},
+			{
+				"text": "23_R Calf Fr_右小腿前",
+				"istitle": true
+			},
+			{
+				"text": "24_R Calf Bk_右小腿后",
+				"istitle": true
+			},
+			{
+				"text": "25_L Calf Fr_左小腿前",
+				"istitle": true
+			},
+			{
+				"text": "26_L Calf Bk_左小腿后",
+				"istitle": true
+			},
+			{
+				"text": "26_L Foot_左脚",
+				"istitle": true
+			},
+			{
+				"text": "28_R Foot_右脚",
+				"istitle": true
+			},
+			{
+				"text": "29_Head_头部",
+				"istitle": true
+			}
+		]
+	}
+]
