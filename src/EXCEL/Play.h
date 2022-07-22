@@ -10,7 +10,11 @@
 #include <QIODevice>
 #include <QStandardPaths>
 #include <QDateTime>
-#include <QTextStream>
+#include <QFileDialog>
+#include <QDir>
+
+#include "xlsxdocument.h"
+#include "xlsxworksheet.h"
 
 namespace EXCEL{
     class Play: public QObject
@@ -18,6 +22,7 @@ namespace EXCEL{
     public:
         Play();
         static Play *getInstance();
+        QString openExcel();
     };
 }
 

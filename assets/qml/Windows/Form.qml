@@ -10,6 +10,9 @@ import SerialStudio 1.0
 
 Control {
     id: root
+    property int tempIndex: 0
+    property var oldTempArray: []
+
     background: Rectangle {
         color: app.windowBackgroundColor
     }
@@ -99,9 +102,29 @@ Control {
                             anchors.right: parent.right
                             text: "全选"
                             onClicked: {
+                                let data = []
+                                let tableData = destTemp.getTableData()
+                                for (var x = 0; x < tableData.length; x++) {
+                                    for (var j = 0; j < tableData[x].length; j++) {
+                                        data.push(tableData[x][j])
+                                    }
+                                }
+                                var diffArray = allRect.getArrDifference(root.oldTempArray,data)
 
+                                let allSelArr= []
+                                for(let i=0; i<29; i++){
+                                    allSelArr.push(diffArray[0])
+                                }
+
+                                destTemp.setTableData(allSelArr)
+                                root.oldTempArray = data
                             }
                         }
+                        function getArrDifference(arr1, arr2) {
+                            return arr1.concat(arr2).filter(function(v, i, arr) {
+                              return arr.indexOf(v) === arr.lastIndexOf(v);
+                            });
+                          }
                     }
 
                     Rectangle {
@@ -168,6 +191,14 @@ Control {
                             Component.onCompleted: {
                                 createDefaultTable(30.5)
                                 setValidator(regExpValue1)
+                                let data = []
+                                let tableData = destTemp.getTableData()
+                                for (var x = 0; x < tableData.length; x++) {
+                                    for (var j = 0; j < tableData[x].length; j++) {
+                                        data.push(tableData[x][j])
+                                    }
+                                }
+                                root.oldTempArray = data
                             }
                         }
                         Table.Table {
@@ -271,23 +302,35 @@ Control {
         let tempData = start_str + end_str
         return tempData
     }
-        //封装自定义属性
-        QtObject{
-            id:attrs;
-            property int counter;
-            Component.onCompleted: {
-                attrs.counter=0;
-            }
-        }
 
         Timer{
-            property int index: 0
             id: refreshTemp
-            interval: 5000
+            interval: 1000
             running: true
             repeat: true
             onTriggered: {
-                setTimeout(function(){console.log("Hello")},3000);
+                if (Cpp_UI_FormData.connectBt && root.tempIndex < Cpp_UI_FormData.timeControl().length){
+                        Cpp_UI_FormData.connectBt = false
+                        setTimeout(sendTempControl,Cpp_UI_FormData.timeControl()[root.tempIndex])
+                }
             }
+        }
+
+        function setTimeout(callback, timeout){
+                let timer = Qt.createQmlObject("import QtQuick 2.14; Timer {}", root);
+                timer.interval = timeout * 1000;
+                timer.repeat = false;
+                timer.triggered.connect(callback);
+                timer.start();
+            }
+
+        function sendTempControl(){
+            var tempList = Cpp_UI_FormData.tempControl(root.tempIndex)
+            destTemp.setTableData(tempList)
+            // 加热
+            Cpp_UI_FormData.sendTemps(getDestTempData())
+            //
+            root.tempIndex += 1
+            Cpp_UI_FormData.connectBt = true
         }
 }

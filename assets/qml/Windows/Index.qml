@@ -47,6 +47,8 @@ Window {
             color: "lightgrey"
             border.color: "grey"
             TextInput {
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
                 anchors.fill: parent
 //                anchors.margins: 2
                 font.pointSize: 15
@@ -60,6 +62,8 @@ Window {
             id: mainPerson
             width: exper_name.width
             height: exper_name.height
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
 //            anchors {
 //                topMargin: 18
 //                horizontalCenter: indexPage.horizontalCenter
@@ -75,6 +79,8 @@ Window {
             id: waterPressure
             width: exper_name.width
             height: exper_name.height
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
 //            anchors {
 //                topMargin: 18
 //                horizontalCenter: indexPage.horizontalCenter

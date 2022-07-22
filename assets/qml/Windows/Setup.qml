@@ -197,8 +197,7 @@ Control {
                 height: 20
                 text: qsTr("选择温度文件")
                 onClicked: {
-                    var savepath = folderDialog.open()
-                    Cpp_CSV_Save.setAutoSavePath(savepath)
+                    Cpp_UI_FormData.openTempControl()
                 }
             }
 

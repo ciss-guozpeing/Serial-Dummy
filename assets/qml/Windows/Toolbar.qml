@@ -24,6 +24,8 @@ import QtQuick 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 
+import "."
+
 Control {
     id: root
 
@@ -195,17 +197,12 @@ Control {
                 Cpp_IO_Manager.toggleConnection()
                 if (!checked) {
                     Cpp_Excel_Save.autoSave()
+                    Cpp_UI_FormData.connectBt = checked
                 } else {
-//                    Cpp_UI_FormData
+                    Cpp_UI_FormData.connectBt = checked
+
                 }
             }
-            function setTimeout(callback,timeout){
-                    let timer = Qt.createQmlObject("import QtQuick 2.14; Timer {}", window);
-                    timer.interval = timeout;
-                    timer.repeat = false;
-                    timer.triggered.connect(callback);
-                    timer.start();
-                }
         }
     }
 }
