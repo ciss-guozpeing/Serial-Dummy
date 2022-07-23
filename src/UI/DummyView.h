@@ -16,6 +16,7 @@ class DummyView: public QQuickPaintedItem
 private:
     QMap<int,QVector<QPoint>> m_area_ponints;
     QVector<QImage> *m_vector_images = new QVector<QImage>(29);
+    QVector<QRect> *m_vector_leds = new QVector<QRect>(9);
     void _createDummy(QPainter* painter);
     int x = 220;
     QMap<int,QPoint> m_position_points={
@@ -34,7 +35,6 @@ public:
     virtual   void  mousePressEvent(QMouseEvent *event);
 //    virtual   void  mouseMoveEvent(QMouseEvent *event);
 //    virtual   void  mouseReleaseEvent(QMouseEvent *event);
-
     Q_INVOKABLE void areaClicked(int mouseX, int mouseY);
 };
 

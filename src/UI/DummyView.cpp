@@ -7,7 +7,6 @@ DummyView::DummyView()
 
 void DummyView::paint(QPainter* painter)
 {
-
     QColor initColor;
     initColor.setBlue(100);
     // 加载图片
@@ -41,6 +40,7 @@ void DummyView::paint(QPainter* painter)
         m_area_ponints.insert(nums, vector_points);
     }
     this->_createDummy(painter);
+
 }
 
 void DummyView::mousePressEvent(QMouseEvent *event)
@@ -110,5 +110,5 @@ void DummyView::_createDummy(QPainter* painter)
     painter->drawImage(53,542, m_vector_images->at(26));  // 右脚
     painter->drawImage(100,542, m_vector_images->at(27));  // 左脚
     painter->drawImage(60,0,m_vector_images->at(28));  // 头部
-
 }
+

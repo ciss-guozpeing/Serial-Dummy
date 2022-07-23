@@ -33,6 +33,15 @@ Control {
         function onSendLeakageDetection() {
             var leakageDetections = Cpp_UI_DrawCurve.leakageDetection
             leakageDetection.setTableData(leakageDetections)
+            for(let i=0; i<leakageDetections.length; i++){
+                if (leakageDetection[i] ===1){
+                   dummy.setLedColor(i,true)
+                }
+                if (leakageDetection[i] ===0){
+                   dummy.setLedColor(i,false)
+                }
+                dummy.setLedColor(0,false)
+            }
         }
     }
 
@@ -230,6 +239,11 @@ Control {
                 id: dummy
                 width: 400
                 height: 600
+                property color onColor: "green"
+                property color offColor: "red"
+                property var m_positon_leds: {0:[20,100],1:[140,100],2:[16,180],3:[142,180],4:[80,245],
+                5:[47,388],6:[119,388],7:[50,535],8:[110,535]}
+                property var leds: []
                 MouseArea {
                     anchors.fill: parent
                     acceptedButtons: Qt.LeftButton
@@ -249,12 +263,23 @@ Control {
                         dummy.scale = 2
                     }
                 }
-                onImplicitHeightChanged: {
-                    dummy.width = 400
-                }
                 Component.onCompleted: {
-                    console.log("dfadfasdfasdfasdfasdf")
+                    for(let i=0; i<9; i++){
+                        var led = Qt.createQmlObject("import QtQuick 2.0;  Rectangle {width: 18;height: 18;radius: width / 2; color: dummy.enabled ? dummy.onColor : dummy.offColor;}",dummy)
+                        led.x = m_positon_leds[i][0]
+                        led.y = m_positon_leds[i][1]
+                        leds.push(led)
+                    }
                 }
+                function setLedColor(index, ishight){
+                    var led = leds[index]
+                    if(ishight){
+                        led.color = dummy.onColor
+                    } else{
+                        led.color = dummy.offColor
+                    }
+                }
+
             }
             onWidthChanged: {
                 dummy.x = view2.width / 2 - (dummy.width / 2)

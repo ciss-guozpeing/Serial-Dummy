@@ -63,11 +63,8 @@ Window{
 
     function setTableData(data) {
         let startIndex=0;
-        console.log(data)
-        console.log(data.length)
         for (let i=0; i<tables.length; i++) {
             let rowData = data.slice(startIndex, startIndex+10)
-            console.log(rowData)
             tables[i].setDefaultRowData(rowData)
             startIndex = startIndex + 10
         }
