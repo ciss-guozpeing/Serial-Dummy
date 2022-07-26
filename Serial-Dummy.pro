@@ -82,7 +82,7 @@ include(libs/Libraries.pri)
 #-----------------------------------------------------------------------------------------
 
 win32* {
-    TARGET = SerialStudio                                # Change target name
+    TARGET = SerialDummy                             # Change target name
     RC_FILE = deploy/windows/resources/info.rc           # Set applicaiton icon
     OTHER_FILES += deploy/windows/nsis/setup.nsi         # Setup script
 }

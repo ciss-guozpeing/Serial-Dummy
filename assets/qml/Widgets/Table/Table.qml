@@ -10,7 +10,7 @@ Window{
     borderColor: root.headerVisible ? "#517497" : "transparent"
 
     width: 570
-    height: 185
+    height: 155
     property var tables: []
     property int rowCount:3
     property int columnCount: 10

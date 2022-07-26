@@ -26,6 +26,12 @@ Control {
         function onSendCurTableTemp() {
             var temps = Cpp_UI_DrawCurve.curTableTemp
             curTemp.setTableData(temps)
+            for(let i=0; i<temps.length; i++){
+                let index = i+1
+                dummy.tempValue = temps[i]
+                dummy.areaIndex = i+1
+                dummy.imageSource = `:/images/1x/${index}.png`
+            }
         }
     }
     Connections {
@@ -40,7 +46,6 @@ Control {
                 if (leakageDetection[i] ===0){
                    dummy.setLedColor(i,false)
                 }
-                dummy.setLedColor(0,false)
             }
         }
     }
@@ -149,13 +154,10 @@ Control {
                             onClicked: {
                                 if (constPower.visible) {
                                     var data = getConstPowerData()
-                                    var constPowerValue = 'ConstantPower:' + data
-                                    console.log(constPowerValue)
-                                    Cpp_UI_FormData.sendTemps(constPowerValue)
+                                    Cpp_UI_FormData.sendTemps(data)
                                 }
                                 if (destTemp.visible) {
                                     let tempData = getDestTempData()
-                                    console.log(tempData)
                                     Cpp_UI_FormData.sendTemps(tempData)
                                 }
                             }
@@ -214,7 +216,7 @@ Control {
                             id: constPower
                             title: "恒功率"
                             Component.onCompleted: {
-                                createTable(1, 1)
+                                createTable(1,1)
                                 setValidator(regExpValue2)
                             }
                         }
@@ -237,7 +239,7 @@ Control {
 
             DummyView {
                 id: dummy
-                width: 400
+                width: 500
                 height: 600
                 property color onColor: "green"
                 property color offColor: "red"
