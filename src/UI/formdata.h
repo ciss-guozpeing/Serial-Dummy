@@ -34,11 +34,13 @@ namespace UI
         Q_INVOKABLE void openTempControl();
         bool connectBt() {return m_connectBt;};
         void setConnectBt(bool isConnect);
+
+
     signals:
        void connectChange();
     public slots:
         void sendWarningMess();
-        void sendTemps(const QString &data);
+        void sendData(const QString &data);
     };
 }
 

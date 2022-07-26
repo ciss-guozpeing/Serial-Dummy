@@ -153,12 +153,14 @@ Control {
                             text: "确认"
                             onClicked: {
                                 if (constPower.visible) {
-                                    var data = getConstPowerData()
-                                    Cpp_UI_FormData.sendTemps(data)
+                                    var powerData = getConstPowerData()
+                                    console.log(powerData)
+                                    Cpp_UI_FormData.sendData(powerData)
                                 }
                                 if (destTemp.visible) {
                                     let tempData = getDestTempData()
-                                    Cpp_UI_FormData.sendTemps(tempData)
+                                    console.log(tempData)
+                                    Cpp_UI_FormData.sendData(tempData)
                                 }
                             }
                         }
@@ -261,7 +263,6 @@ Control {
                         var height = mouse.y - originY
                     }
                     onScaleChanged: {
-                        console.log("1111")
                         dummy.scale = 2
                     }
                 }

@@ -32,7 +32,7 @@ void FormData::sendWarningMess()
     }
 }
 
-void FormData::sendTemps(const QString &data)
+void FormData::sendData(const QString &data)
 {
     QByteArray bin = data.toUtf8();
     IO::Manager::getInstance()->writeData(bin);
