@@ -40,7 +40,7 @@
 static void cliShowVersion() {
   auto appver = QString("%1 version %2").arg(APP_NAME).arg(APP_VERSION);
   auto author =
-      QString("Written by Alex Spataru <https://github.com/alex-spataru>");
+      QString("guozeping");
 
   qDebug() << appver.toStdString().c_str();
   qDebug() << author.toStdString().c_str();
@@ -86,7 +86,6 @@ int main(int argc, char **argv) {
   app.setApplicationVersion(APP_VERSION);
   app.setOrganizationName(APP_DEVELOPER);
   app.setOrganizationDomain(APP_SUPPORT_URL);
-
   // Read arguments
   QString arguments;
   if (app.arguments().count() >= 2)

@@ -26,10 +26,10 @@ Control {
         function onSendCurTableTemp() {
             var temps = Cpp_UI_DrawCurve.curTableTemp
             curTemp.setTableData(temps)
-            for(let i=0; i<temps.length; i++){
-                let index = i+1
+            for (var i = 0; i < temps.length; i++) {
+                let index = i + 1
                 dummy.tempValue = temps[i]
-                dummy.areaIndex = i+1
+                dummy.areaIndex = i + 1
                 dummy.imageSource = `:/images/1x/${index}.png`
             }
         }
@@ -39,12 +39,19 @@ Control {
         function onSendLeakageDetection() {
             var leakageDetections = Cpp_UI_DrawCurve.leakageDetection
             leakageDetection.setTableData(leakageDetections)
-            for(let i=0; i<leakageDetections.length; i++){
-                if (leakageDetection[i] ===1){
-                   dummy.setLedColor(i,true)
+            for (var i = 0; i < leakageDetections.length; i++) {
+                if (leakageDetections[i] === 0) {
+                    dummy.setLedColor(i, true)
+                    Cpp_UI_FormData.beepIndex = i
+                    Cpp_UI_FormData.beepState = leakageDetections
                 }
-                if (leakageDetection[i] ===0){
-                   dummy.setLedColor(i,false)
+                if (leakageDetections[i] === 1) {
+                    // FALSE
+                    dummy.setLedColor(i, false)
+                    if (Cpp_UI_FormData.beepState[i] !== leakageDetections[i]) {
+                        Cpp_UI_FormData.beepIndex = i
+                        Cpp_UI_FormData.beepState = leakageDetections
+                    }
                 }
             }
         }
@@ -123,10 +130,11 @@ Control {
                                         data.push(tableData[x][j])
                                     }
                                 }
-                                var diffArray = allRect.getArrDifference(root.oldTempArray,data)
+                                var diffArray = allRect.getArrDifference(
+                                            root.oldTempArray, data)
 
-                                let allSelArr= []
-                                for(let i=0; i<29; i++){
+                                let allSelArr = []
+                                for (var i = 0; i < 29; i++) {
                                     allSelArr.push(diffArray[0])
                                 }
 
@@ -135,10 +143,13 @@ Control {
                             }
                         }
                         function getArrDifference(arr1, arr2) {
-                            return arr1.concat(arr2).filter(function(v, i, arr) {
-                              return arr.indexOf(v) === arr.lastIndexOf(v);
-                            });
-                          }
+                            return arr1.concat(arr2).filter(
+                                        function (v, i, arr) {
+                                            return arr.indexOf(
+                                                        v) === arr.lastIndexOf(
+                                                        v)
+                                        })
+                        }
                     }
 
                     Rectangle {
@@ -153,12 +164,14 @@ Control {
                             text: "确认"
                             onClicked: {
                                 if (constPower.visible) {
-                                    var data = getConstPowerData()
-                                    Cpp_UI_FormData.sendTemps(data)
+                                    var powerData = getConstPowerData()
+                                    console.log(powerData)
+                                    Cpp_UI_FormData.sendData(powerData)
                                 }
                                 if (destTemp.visible) {
                                     let tempData = getDestTempData()
-                                    Cpp_UI_FormData.sendTemps(tempData)
+                                    console.log(tempData)
+                                    Cpp_UI_FormData.sendData(tempData)
                                 }
                             }
                         }
@@ -216,7 +229,7 @@ Control {
                             id: constPower
                             title: "恒功率"
                             Component.onCompleted: {
-                                createTable(1,1)
+                                createTable(1, 1)
                                 setValidator(regExpValue2)
                             }
                         }
@@ -241,10 +254,19 @@ Control {
                 id: dummy
                 width: 500
                 height: 600
-                property color onColor: "green"
+                property color onColor: "blue"
                 property color offColor: "red"
-                property var m_positon_leds: {0:[20,100],1:[140,100],2:[16,180],3:[142,180],4:[80,245],
-                5:[47,388],6:[119,388],7:[50,535],8:[110,535]}
+                property var m_positon_leds: {
+                    "0": [20, 100],
+                    "1": [140, 100],
+                    "2": [16, 180],
+                    "3": [142, 180],
+                    "4": [80, 245],
+                    "5": [47, 388],
+                    "6": [119, 388],
+                    "7": [50, 535],
+                    "8": [110, 535]
+                }
                 property var leds: []
                 MouseArea {
                     anchors.fill: parent
@@ -261,27 +283,27 @@ Control {
                         var height = mouse.y - originY
                     }
                     onScaleChanged: {
-                        console.log("1111")
                         dummy.scale = 2
                     }
                 }
                 Component.onCompleted: {
-                    for(let i=0; i<9; i++){
-                        var led = Qt.createQmlObject("import QtQuick 2.0;  Rectangle {width: 18;height: 18;radius: width / 2; color: dummy.enabled ? dummy.onColor : dummy.offColor;}",dummy)
+                    for (var i = 0; i < 9; i++) {
+                        var led = Qt.createQmlObject(
+                                    "import QtQuick 2.0;  Rectangle {width: 18;height: 18;radius: width / 2; color: dummy.enabled ? dummy.onColor : dummy.offColor;}",
+                                    dummy)
                         led.x = m_positon_leds[i][0]
                         led.y = m_positon_leds[i][1]
                         leds.push(led)
                     }
                 }
-                function setLedColor(index, ishight){
+                function setLedColor(index, ishight) {
                     var led = leds[index]
-                    if(ishight){
+                    if (ishight) {
                         led.color = dummy.onColor
-                    } else{
+                    } else {
                         led.color = dummy.offColor
                     }
                 }
-
             }
             onWidthChanged: {
                 dummy.x = view2.width / 2 - (dummy.width / 2)
@@ -330,34 +352,35 @@ Control {
         return tempData
     }
 
-        Timer{
-            id: refreshTemp
-            interval: 1000
-            running: true
-            repeat: true
-            onTriggered: {
-                if (Cpp_UI_FormData.connectBt && root.tempIndex < Cpp_UI_FormData.timeControl().length){
-                        Cpp_UI_FormData.connectBt = false
-                        setTimeout(sendTempControl,Cpp_UI_FormData.timeControl()[root.tempIndex])
-                }
+    Timer {
+        id: refreshTemp
+        interval: 1000
+        running: true
+        repeat: true
+        onTriggered: {
+            if (Cpp_UI_FormData.connectBt
+                    && root.tempIndex < Cpp_UI_FormData.timeControl().length) {
+                Cpp_UI_FormData.connectBt = false
+                setTimeout(sendTempControl,
+                           Cpp_UI_FormData.timeControl()[root.tempIndex])
             }
         }
+    }
 
-        function setTimeout(callback, timeout){
-                let timer = Qt.createQmlObject("import QtQuick 2.14; Timer {}", root);
-                timer.interval = timeout * 1000;
-                timer.repeat = false;
-                timer.triggered.connect(callback);
-                timer.start();
-            }
+    function setTimeout(callback, timeout) {
+        let timer = Qt.createQmlObject("import QtQuick 2.14; Timer {}", root)
+        timer.interval = timeout * 1000
+        timer.repeat = false
+        timer.triggered.connect(callback)
+        timer.start()
+    }
 
-        function sendTempControl(){
-            var tempList = Cpp_UI_FormData.tempControl(root.tempIndex)
-            destTemp.setTableData(tempList)
-            // 加热
-            Cpp_UI_FormData.sendTemps(getDestTempData())
-            //
-            root.tempIndex += 1
-            Cpp_UI_FormData.connectBt = true
-        }
+    function sendTempControl() {
+        var tempList = Cpp_UI_FormData.tempControl(root.tempIndex)
+        destTemp.setTableData(tempList)
+        // 加热
+        Cpp_UI_FormData.sendTemps(getDestTempData())
+        root.tempIndex += 1
+        Cpp_UI_FormData.connectBt = true
+    }
 }

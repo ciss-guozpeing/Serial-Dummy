@@ -36,8 +36,6 @@ DummyView::DummyView()
 
 void DummyView::paint(QPainter* painter)
 {
-    QColor initColor;
-    initColor.setBlue(100);
     // 加载图片
     for (int i=0; i<m_vector_images->count(); i++){
         QImage image;
@@ -46,8 +44,7 @@ void DummyView::paint(QPainter* painter)
         m_vector_images->replace(i,image);
     }
 
-
-    //
+    // 设置点
     QVector<QImage>::iterator iter;
     int nums=0;
     for (iter = m_vector_images->begin();iter!=m_vector_images->end();iter++){
@@ -62,7 +59,6 @@ void DummyView::paint(QPainter* painter)
                     point = point + m_position_points[nums-1];
                     iter->colorCount();
                     vector_points.push_back(point);
-                    iter->setPixelColor(w,h,initColor);
                 }
             }
         }
@@ -140,7 +136,7 @@ void DummyView::setAreaColor(QImage& image)
     QColor color;
     QColor defaultColor;
 
-    defaultColor.setBlue(100);
+    defaultColor.setGreen(100);
     color.setRed(getTempValue());
 
     int bmpWidth = image.width();

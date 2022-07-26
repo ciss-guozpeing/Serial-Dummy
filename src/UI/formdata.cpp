@@ -3,6 +3,8 @@
 #include "Logger.h"
 #include "IO/Manager.h"
 #include "EXCEL/Play.h"
+#include "Misc/Utilities.h"
+#include <QApplication>
 
 using namespace UI;
 static FormData *INSTANCE = nullptr;
@@ -32,7 +34,7 @@ void FormData::sendWarningMess()
     }
 }
 
-void FormData::sendTemps(const QString &data)
+void FormData::sendData(const QString &data)
 {
     QByteArray bin = data.toUtf8();
     IO::Manager::getInstance()->writeData(bin);
@@ -77,4 +79,21 @@ void FormData::setConnectBt(bool isConnect)
     m_connectBt = isConnect;
     emit connectChange();
 }
+
+void FormData::setBeepState(QVector<int> beepState)
+{
+    m_beepState.replace(beepIndex(),beepState.at(beepIndex()));
+    if(beepState.at(beepIndex())){
+        qApp->beep();
+        Misc::Utilities::getInstance()->showMessageBox("警告","发生漏水");
+    }
+    emit beepStateChanged();
+}
+
+void FormData::setBeepIndex(int index)
+{
+    m_beepIndex = index;
+    emit beepIndexChanged();
+}
+
 
