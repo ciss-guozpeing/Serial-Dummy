@@ -25,10 +25,15 @@ Control {
         target: Cpp_UI_DrawCurve
         function onSendCurTableTemp() {
             var temps = Cpp_UI_DrawCurve.curTableTemp
-            curTemp.setTableData(temps)
-            for (var i = 0; i < temps.length; i++) {
+
+            var relTemps = new Array
+            for (var j = 0; j < temps.length; j++) {
+                relTemps.push(temps[Cpp_UI_FormData.areaSortWareMap[j] - 1])
+            }
+            curTemp.setTableData(relTemps)
+            for (var i = 0; i < relTemps.length; i++) {
                 let index = i + 1
-                dummy.tempValue = temps[i]
+                dummy.tempValue = relTemps[i]
                 dummy.areaIndex = i + 1
                 dummy.imageSource = `:/images/1x/${index}.png`
             }
@@ -165,13 +170,17 @@ Control {
                             onClicked: {
                                 if (constPower.visible) {
                                     var powerData = getConstPowerData()
-                                    console.log(powerData)
                                     Cpp_UI_FormData.sendData(powerData)
                                 }
                                 if (destTemp.visible) {
                                     let tempData = getDestTempData()
-                                    console.log(tempData)
-                                    Cpp_UI_FormData.sendData(tempData)
+                                    var relTempData = new Array
+                                    for (var i = 0; i < tempData.length; i++) {
+                                        relTempData.push(
+                                                    tempData[Cpp_UI_FormData.areaHardWareMap[i]
+                                                             - 1])
+                                    }
+                                    Cpp_UI_FormData.sendData(relTempData)
                                 }
                             }
                         }
@@ -206,7 +215,7 @@ Control {
                             Component.onCompleted: {
                                 createTable(1, 9)
                                 setTableTitle(
-                                            [["头部", "左肩部", "右肩部", "左胯部", "右胯部", "左膝盖", "右膝盖", "左肘部", "右肘部"]])
+                                            [["左肩部", "右肩部", "胯部", "右膝盖", "左膝盖", "右肘部", "左肘部", "右脚趾", "左脚趾"]])
                             }
                         }
                         Table.Table {
