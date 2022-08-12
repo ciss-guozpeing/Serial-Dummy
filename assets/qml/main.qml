@@ -1,3 +1,5 @@
+﻿
+
 /*
  * Copyright (c) 2020-2021 Alex Spataru <https://github.com/alex-spataru>
  *
@@ -19,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 import QtQuick 2.12
 import QtQuick.Dialogs 1.1
 import QtQuick.Window 2.12
@@ -34,9 +35,7 @@ ApplicationWindow {
     id: app
     visible: true
     flags: Qt.Window | Qt.FramelessWindowHint
-    //
     // Global properties
-    //
     readonly property int spacing: 8
     property bool firstValidPacket: false
     readonly property color windowBackgroundColor: "#121920"
@@ -50,17 +49,11 @@ ApplicationWindow {
             return "Monospace"
         }
     }
-
-    //
     // We use this variable to ask the user if he/she wants to enable/disable
     // automatic update checking on the second run
-    //
     property int appLaunchStatus: 0
     property bool automaticUpdates: false
-
-    //
     // Hacks to fix window maximized behavior
-    //
     property bool firstChange: true
     property bool windowMaximized: false
     onVisibilityChanged: {
@@ -70,17 +63,13 @@ ApplicationWindow {
 
             windowMaximized = true
             fullScreen = false
-        }
-
-        else if (visibility === Window.FullScreen) {
+        } else if (visibility === Window.FullScreen) {
             if (!fullScreen)
                 firstChange = false
 
             windowMaximized = false
             fullScreen = true
-        }
-
-        else if (visibility !== Window.Hidden) {
+        } else if (visibility !== Window.Hidden) {
             if (windowMaximized || fullScreen && firstChange) {
                 app.x = 100
                 app.y = 100
@@ -92,10 +81,7 @@ ApplicationWindow {
             windowMaximized = false
         }
     }
-
-    //
     // Application UI status variables (used for the menubar)
-    //
     readonly property bool setupVisible: setup.visible
     readonly property bool dashboardVisible: data.visible
     readonly property bool widgetsVisible: true
@@ -103,98 +89,56 @@ ApplicationWindow {
     readonly property bool dashboardAvailable: true
     readonly property bool widgetsAvailable: true
     readonly property bool formAvailable: true
-
-    //
     // Menubar status
-    //
     property bool menubarEnabled: true
-
-    //
     // Fullscreen status
-    //
     property bool fullScreen: false
-
-    //
     // Check for updates (non-silent mode)
-    //
     function checkForUpdates() {
         Cpp_Updater.setNotifyOnFinish(Cpp_AppUpdaterUrl, true)
         Cpp_Updater.checkForUpdates(Cpp_AppUpdaterUrl)
     }
-
-    //
     // Display about dialog
-    //
     function showAbout() {
         about.show()
     }
-
-    //
     // Display the console
-    //
     function showConsole() {
         toolbar.consoleClicked()
     }
-
-    //
     // Display the dashboard
-    //
     function showDashboard() {
         toolbar.dataClicked()
     }
-
-    //
     // Display the widgets
-    //
     function showWidgets() {
         toolbar.widgetsClicked()
     }
-
-    //
     // Display the Form
-    //
-    function showForm(){
+    function showForm() {
         toolbar.formClicked()
     }
-
-    //
     // Toggle preferences pane
-    //
     function togglePreferences() {
         toolbar.setupClicked()
     }
-
-    //
     // Clears console output
-    //
     function clearConsole() {
         terminal.clearConsole()
     }
-
-    //
     // Copy console selection
-    //
     function copyConsole() {
         terminal.copy()
     }
-
-    //
     // Hide/show menubar
-    //
     function toggleMenubar() {
         app.menubarEnabled = !app.menubarEnabled
     }
-
-    //
     // Select all console text
-    //
     function selectAllConsole() {
         terminal.selectAll()
     }
-
-    //
     // Toggle fullscreen state
-    //
     function toggleFullscreen() {
         app.fullScreen = !app.fullScreen
         if (app.fullScreen)
@@ -202,26 +146,17 @@ ApplicationWindow {
         else
             app.showNormal()
     }
-
-    //
     // Show Index Page
-    //
-    function hideIndexPage(){
+    function hideIndexPage() {
         app.flags = Qt.Window
     }
-
-    //
     // Window geometry
-    //
-//    visibility: Qt.WindowNoState
+    //    visibility: Qt.WindowNoState
     minimumWidth: 1300
-    minimumHeight: Qt.platform.os == "osx" ? 740 : 760
+    minimumHeight: Qt.platform.os == "osx" ? 900 : 900
     title: Cpp_AppName + " v" + Cpp_AppVersion
 
-
-
     // Theme options
-    //
     palette.text: "#fff"
     palette.buttonText: "#fff"
     palette.windowText: "#fff"
@@ -229,10 +164,7 @@ ApplicationWindow {
     background: Rectangle {
         color: app.windowBackgroundColor
     }
-
-    //
     // Startup code
-    //
     Component.onCompleted: {
         app.hide()
         // Hide dialogs, show devices pane
@@ -248,16 +180,13 @@ ApplicationWindow {
         // Load welcome guide
 
         // Load JSON map file (if any)
-//        Cpp_JSON_Generator.readSettings()
+        //        Cpp_JSON_Generator.readSettings()
 
         // Display the window & check for updates in 500 ms (we do this so that
         // we wait for the window to read settings before showing it)
         timer.start()
     }
-
-    //
     // Application menubar loader (we need to use a different version in macOS)
-    //
     Loader {
         id: asyncLoader
         asynchronous: true
@@ -272,10 +201,7 @@ ApplicationWindow {
         id: indexLoader
         asynchronous: true
     }
-
-    //
     // Startup timer
-    //
     Timer {
         id: timer
         interval: 500
@@ -324,9 +250,7 @@ ApplicationWindow {
                 Cpp_Updater.checkForUpdates(Cpp_AppUpdaterUrl)
         }
     }
-    //
     // Save window size & position
-    //
     Settings {
         property alias appX: app.x
         property alias appY: app.y
@@ -339,10 +263,7 @@ ApplicationWindow {
         property alias menubarVisible: app.menubarEnabled
     }
 
-    //
     // Main layout
-    //
-
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -360,45 +281,42 @@ ApplicationWindow {
 
             onDataClicked: {
                 if (app.dashboardAvailable) {
-                    data.opacity     = 1
-                    widgets.opacity  = 0
-                    form.opacity     = 0
-                    formChecked      = false
-                    dataChecked      = true
-                    widgetsChecked   = false
-                }
-                else
+                    data.opacity = 1
+                    widgets.opacity = 0
+                    form.opacity = 0
+                    formChecked = false
+                    dataChecked = true
+                    widgetsChecked = false
+                } else
                     app.showConsole()
             }
 
             onWidgetsClicked: {
                 if (app.widgetsAvailable) {
-                    data.opacity     = 0
-                    widgets.opacity  = 1
-                    form.opacity     = 0
-                    formChecked      = false
-                    dataChecked      = false
-                    widgetsChecked   = true
-                }
-                else
+                    data.opacity = 0
+                    widgets.opacity = 1
+                    form.opacity = 0
+                    formChecked = false
+                    dataChecked = false
+                    widgetsChecked = true
+                } else
                     app.showConsole()
             }
             onFormClicked: {
                 if (app.formAvailable) {
-                    data.opacity     = 0
+                    data.opacity = 0
                     widgets.opacity = 0
-                    form.opacity  = 1
-                    formChecked      = true
-                    dataChecked      = false
-                    widgetsChecked   = false
-
-                }
-                else
+                    form.opacity = 1
+                    formChecked = true
+                    dataChecked = false
+                    widgetsChecked = false
+                } else
                     app.showConsole()
             }
             onSaveClicked: {
-//                var graphrange = widgets.getGraphRange()
-//                Cpp_CSV_Save.saveGraphData(graphrange)
+
+                //                var graphrange = widgets.getGraphRange()
+                //                Cpp_CSV_Save.saveGraphData(graphrange)
             }
         }
 
@@ -418,7 +336,9 @@ ApplicationWindow {
 
                     // Animate on show
                     visible: opacity > 0
-                    Behavior on opacity {NumberAnimation{}}
+                    Behavior on opacity {
+                        NumberAnimation {}
+                    }
                 }
 
                 Widgets {
@@ -428,7 +348,9 @@ ApplicationWindow {
                     // Animate on show
                     enabled: opacity > 0
                     visible: opacity > 0
-                    Behavior on opacity {NumberAnimation{}}
+                    Behavior on opacity {
+                        NumberAnimation {}
+                    }
                 }
 
                 Form {
@@ -437,7 +359,9 @@ ApplicationWindow {
 
                     enabled: opacity > 0
                     visible: opacity > 0
-                    Behavior on opacity {NumberAnimation{}}
+                    Behavior on opacity {
+                        NumberAnimation {}
+                    }
                 }
             }
 
@@ -460,17 +384,19 @@ ApplicationWindow {
                 Layout.minimumWidth: displayedWidth
                 Layout.maximumWidth: displayedWidth
 
-                Behavior on opacity {NumberAnimation{}}
-                Behavior on displayedWidth {NumberAnimation{}}
+                Behavior on opacity {
+                    NumberAnimation {}
+                }
+                Behavior on displayedWidth {
+                    NumberAnimation {}
+                }
             }
         }
     }
-    //
     // Index page
-    //
-    Component{
+    Component {
         id: indexpage
-        Index{
+        Index {
             id: index
             color: app.windowBackgroundColor
             onOkClicked: {
@@ -480,24 +406,15 @@ ApplicationWindow {
             }
         }
     }
-
-    //
     // About window
-    //
     About {
         id: about
     }
-
-    //
     // CSV player window
-    //
     CsvPlayer {
         id: csvPlayer
     }
-
-    //
     // Enable/disable automatic updates dialog
-    //
     MessageDialog {
         id: automaticUpdatesMessageDialog
 
@@ -506,9 +423,10 @@ ApplicationWindow {
         modality: Qt.ApplicationModal
         standardButtons: StandardButton.Yes | StandardButton.No
         text: "<h3>" + qsTr("Check for updates automatically?") + "</h3>"
-        informativeText: qsTr("Should %1 automatically check for updates? " +
-                              "You can always check for updates manually from " +
-                              "the \"Help\" menu").arg(Cpp_AppName);
+        informativeText: qsTr(
+                             "Should %1 automatically check for updates? "
+                             + "You can always check for updates manually from "
+                             + "the \"Help\" menu").arg(Cpp_AppName)
 
         // Behavior when the user clicks on "Yes"
         onAccepted: {
@@ -521,10 +439,7 @@ ApplicationWindow {
             app.automaticUpdates = false
         }
     }
-
-    //
     // Intuitive UI stuff for drag and drop
-    //
     Rectangle {
         id: dropRectangle
 
@@ -539,7 +454,6 @@ ApplicationWindow {
         anchors.centerIn: parent
         width: dropLayout.implicitWidth + 6 * app.spacing
         height: dropLayout.implicitHeight + 6 * app.spacing
-
 
         ColumnLayout {
             id: dropLayout
@@ -571,69 +485,71 @@ ApplicationWindow {
             onTriggered: dropRectangle.opacity = 0
         }
 
-        Behavior on opacity {NumberAnimation{}}
+        Behavior on opacity {
+            NumberAnimation {}
+        }
     }
 
-//    //
-//    // File drop area
-//    //
-//    DropArea {
-//        id: dropArea
-//        anchors.fill: parent
-////        enabled: terminal.visible
+    //    //
+    //    // File drop area
+    //    //
+    //    DropArea {
+    //        id: dropArea
+    //        anchors.fill: parent
+    ////        enabled: terminal.visible
 
-//        //
-//        // Show rectangle and set color based on file extension on drag enter
-//        //
-//        onEntered: {
-//            // Get file name & set color of rectangle accordingly
-//            var path = drag.urls[0].toString()
-//            if (path.endsWith(".json") || path.endsWith(".csv")) {
-//                drag.accept(Qt.LinkAction)
-//                dropRectangle.color = Qt.darker(palette.highlight, 1.4)
-//            }
+    //        //
+    //        // Show rectangle and set color based on file extension on drag enter
+    //        //
+    //        onEntered: {
+    //            // Get file name & set color of rectangle accordingly
+    //            var path = drag.urls[0].toString()
+    //            if (path.endsWith(".json") || path.endsWith(".csv")) {
+    //                drag.accept(Qt.LinkAction)
+    //                dropRectangle.color = Qt.darker(palette.highlight, 1.4)
+    //            }
 
-//            // Invalid file name, show red rectangle
-//            else
-//                dropRectangle.color = "#d72d60"
+    //            // Invalid file name, show red rectangle
+    //            else
+    //                dropRectangle.color = "#d72d60"
 
-//            // Show drag&drop rectangle
-//            dropRectangle.opacity = 0.8
-//        }
+    //            // Show drag&drop rectangle
+    //            dropRectangle.opacity = 0.8
+    //        }
 
-//        //
-//        // Open *.json & *.csv files on drag drop
-//        //
-//        onDropped: {
-//            // Hide rectangle
-//            dropRectangle.hide()
-            
-//            // Get dropped file URL and remove prefixed "file://"
-//            var path = drop.urls[0].toString()
-//            if (Qt.platform.os != "windows")
-//                path = path.replace(/^(file:\/{2})/,"");
-//            else
-//                path = path.replace(/^(file:\/{3})/,"");
+    //        //
+    //        // Open *.json & *.csv files on drag drop
+    //        //
+    //        onDropped: {
+    //            // Hide rectangle
+    //            dropRectangle.hide()
 
-//            // Unescape html codes like '%23' for '#'
-//            var cleanPath = decodeURIComponent(path);
+    //            // Get dropped file URL and remove prefixed "file://"
+    //            var path = drop.urls[0].toString()
+    //            if (Qt.platform.os != "windows")
+    //                path = path.replace(/^(file:\/{2})/,"");
+    //            else
+    //                path = path.replace(/^(file:\/{3})/,"");
 
-//            // Process JSON files
-//            if (cleanPath.endsWith(".json")) {
-//                Cpp_JSON_Generator.setOperationMode(0)
-//                Cpp_JSON_Generator.loadJsonMap(cleanPath, false)
-//            }
+    //            // Unescape html codes like '%23' for '#'
+    //            var cleanPath = decodeURIComponent(path);
 
-//            // Process CSV files
-//            else if (cleanPath.endsWith(".csv"))
-//                Cpp_CSV_Player.openFile(cleanPath)
-//        }
+    //            // Process JSON files
+    //            if (cleanPath.endsWith(".json")) {
+    //                Cpp_JSON_Generator.setOperationMode(0)
+    //                Cpp_JSON_Generator.loadJsonMap(cleanPath, false)
+    //            }
 
-//        //
-//        // Hide drag & drop rectangle on drag exit
-//        //
-//        onExited: {
-//            dropRectangle.hide()
-//        }
-//    }
+    //            // Process CSV files
+    //            else if (cleanPath.endsWith(".csv"))
+    //                Cpp_CSV_Player.openFile(cleanPath)
+    //        }
+
+    //        //
+    //        // Hide drag & drop rectangle on drag exit
+    //        //
+    //        onExited: {
+    //            dropRectangle.hide()
+    //        }
+    //    }
 }

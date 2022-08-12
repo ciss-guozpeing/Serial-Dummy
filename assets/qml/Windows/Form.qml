@@ -1,4 +1,4 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
@@ -253,19 +253,19 @@ Control {
             DummyView {
                 id: dummy
                 width: 500
-                height: 600
+                height: 900
                 property color onColor: "blue"
                 property color offColor: "red"
                 property var m_positon_leds: {
-                    "0": [20, 100],
-                    "1": [140, 100],
-                    "2": [16, 180],
-                    "3": [142, 180],
-                    "4": [80, 245],
-                    "5": [47, 388],
-                    "6": [119, 388],
-                    "7": [50, 535],
-                    "8": [110, 535]
+                    "0": [25, 153],
+                    "1": [193, 153],
+                    "2": [20, 230],
+                    "3": [193, 240],
+                    "4": [115, 355],
+                    "5": [67, 520],
+                    "6": [140, 520],
+                    "7": [65, 676],
+                    "8": [133, 676]
                 }
                 property var leds: []
                 MouseArea {
