@@ -1,4 +1,4 @@
-#ifndef DUMMYVIEW_H
+﻿#ifndef DUMMYVIEW_H
 #define DUMMYVIEW_H
 
 #include <QObject>
@@ -211,6 +211,9 @@ private:
     QImage m_image_27;
     QImage m_image_28;
     QImage m_image_29;
+    QImage m_image_f27;
+    QImage m_image_f28;
+    QImage m_image_f29;
     QString m_imageSource_1;
     QString m_imageSource_2;
     QString m_imageSource_3;

@@ -172,5 +172,8 @@
         <file>images/2x/29@2x.png</file>
         <file>images/2x/背面@2x.png</file>
         <file>images/2x/正面@2x.png</file>
+        <file>images/1x/f_27.png</file>
+        <file>images/1x/f_28.png</file>
+        <file>images/1x/f_29.png</file>
     </qresource>
 </RCC>

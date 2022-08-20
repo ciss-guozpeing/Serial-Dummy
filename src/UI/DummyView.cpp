@@ -48,6 +48,12 @@ void DummyView::paint(QPainter* painter)
         image.detach();
         m_vector_images->replace(i,image);
     }
+    m_image_f29.load(":/images/1x/f_29.png");
+    m_image_f29 = m_image_f29.convertToFormat(QImage::Format_RGBA8888_Premultiplied,Qt::NoFormatConversion);
+    m_image_f27.load(":/images/1x/f_27.png");
+    m_image_f27 = m_image_f27.convertToFormat(QImage::Format_RGBA8888_Premultiplied,Qt::NoFormatConversion);
+    m_image_f28.load(":/images/1x/f_28.png");
+    m_image_f28 = m_image_f28.convertToFormat(QImage::Format_RGBA8888_Premultiplied,Qt::NoFormatConversion);
 
     QVector<QImage>::iterator iter;
     int nums=0;
@@ -98,7 +104,7 @@ void DummyView::areaClicked(int mouseX, int mouseY)
 void DummyView::_createDummy(QPainter* painter)
 {
     // 正面
-    painter->drawImage(60,0, m_image_29);  // 头部
+    painter->drawImage(60,0, m_image_f29);  // 头部
     painter->drawImage(2,95, m_image_9); // 胸部
     painter->drawImage(-19,81, m_image_1);   // 右上臂
     painter->drawImage(155,88, m_image_3); // 左上臂
@@ -113,8 +119,8 @@ void DummyView::_createDummy(QPainter* painter)
     painter->drawImage(17,470, m_image_23);  // 右小腿
     painter->drawImage(88,471, m_image_25);  // 左小腿
     // 特殊
-    painter->drawImage(13,652, m_image_27);  // 右脚
-    painter->drawImage(85,654, m_image_28);  // 左脚
+    painter->drawImage(13,652, m_image_f27);  // 右脚
+    painter->drawImage(85,654, m_image_f28);  // 左脚
 
 
     // 背面

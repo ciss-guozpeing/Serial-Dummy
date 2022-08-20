@@ -239,6 +239,7 @@ Control {
                             title: "恒功率"
                             Component.onCompleted: {
                                 createTable(1, 1)
+                                setTableTitle([["总功率"]])
                                 setValidator(regExpValue2)
                             }
                         }
